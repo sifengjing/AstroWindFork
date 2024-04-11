@@ -1,0 +1,85 @@
+---
+publishDate: 2023-01-02T00:00:00Z
+title: Markdown elements demo post
+excerpt: Sint sit cillum pariatur eiusmod nulla pariatur ipsum. Sit laborum anim qui mollit tempor pariatur nisi minim dolor.
+image: https://images.unsplash.com/photo-1534307671554-9a6d81f4d629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1651&q=80
+category: Documentation
+tags:
+  - markdown
+  - blog
+  - Astro
+---
+
+import Logo from '~/components/Logo.astro';
+import AmzProductTable from '~/components/AmzProductTable.astro';
+export const data = {
+	"Guide": "In the pursuit of sexual wellness and satisfaction, choosing the right lubricant can make all the difference. For women, it's important to select a lube that's gentle, maintains the natural pH balance, and enhances comfort. Below you'll find the top-ranked sexual lubricants for women on Amazon, tailored to fit a variety of preferences and needs.",
+	"Products": [{
+		"Name": "Water-Based Personal Lubricant",
+		"Price": "$7.99",
+		"Asin": "B0CBK39KQ8",
+		"Image": "https://m.media-amazon.com/images/I/51SczCjkT9L.AC.jpg",
+		"Slogan": "Smooth and Natural Ingredients",
+		"Rating": "4",
+		"Pros": ["Silky smooth", "Long-lasting", "Non-staining"],
+		"Cons": ["May need reapplication", "Milder sensation"],
+		"Review": "This water-based lubricant boasts a silky smooth texture and is long-lasting for extended play. The water-based formula is non-staining and ideal for easy cleanup. Some users may need to reapply during use, and personal preference will dictate its suitability."
+	}, {
+		"Name": "K-Y Yours + Mine Couples Personal Lubricant",
+		"Price": "$13.99",
+		"Asin": "B017YWRVT4",
+		"Image": "https://m.media-amazon.com/images/I/81tYmoJus-L.AC.jpg",
+		"Slogan": "Connecting Partners with Shared Pleasure",
+		"Rating": "4.5",
+		"Pros": ["Two lubricants for a tailored experience", "Water-based for her, glycerin-based for him", "Creates an invigorating warming sensation for both"],
+		"Cons": ["Separate use may not appeal to all", "May not provide enough slickness for extended duration"],
+		"Review": "K-Y Yours + Mine offers a unique, dual-lubricant system, creating a personalized experience for both partners. This set can enhance intimacy, though some users might find individual formulas an unnecessary feature."
+	}, {
+		"Name": "Durex Cherry Flavored Lube",
+		"Price": "$7.96",
+		"Asin": "B0CB77Z34W",
+		"Image": "https://m.media-amazon.com/images/I/71WvE5t++nL.AC.jpg",
+		"Slogan": "A Sweet Addition to Your Sensual Moments",
+		"Rating": "4",
+		"Pros": ["Tasty cherry flavor", "Versatile for different types of play", "Water-based and compatible with toys"],
+		"Cons": ["Flavor may not please everyone", "Artificial additives could irritate sensitive areas"],
+		"Review": "For those looking for a flavorful twist, Durex Cherry Flavored Lube provides a fun and tasty option that can be used for various activities. As it is water-based, it's toy-friendly and compatible with most condoms. However, those sensitive to flavorings should approach with caution."
+	}, {
+		"Name": "Sliquid H2O Water-Based Lube",
+		"Price": "$32.89 for 2 pack",
+		"Asin": "B0BYB41LFV",
+		"Image": "https://m.media-amazon.com/images/I/71K8rComcjL.AC.jpg",
+		"Slogan": "Pure, Simple, and Slick",
+		"Rating": "4.5",
+		"Pros": ["Hypoallergenic, non-toxic", "Vegan and cruelty-free", "Compatible with all toy materials"],
+		"Cons": ["Pricier option for volume", "May dry out quicker than silicone-based options"],
+		"Review": "Sliquid H2O is a top-of-the-line, water-based lubricant for those who prioritize purity and organic ingredients. It's hypoallergenic and cruelty-free, making it suitable for people with sensitivities. Its consistency matches the body's natural lubrication, though it may not last as long as silicone lubricants."
+	}, {
+		"Name": "Lube Life Water-Based Personal Lubricant",
+		"Price": "$9.99",
+		"Asin": "B075SN1MY9",
+		"Image": "https://m.media-amazon.com/images/I/6175mVHeQML.AC.jpg",
+		"Slogan": "Lifelong Slippery Fun",
+		"Rating": "5",
+		"Pros": ["Water-based ideal for all skin types", "Non-staining", "Compatible with condoms and toys"],
+		"Cons": ["May require frequent reapplication", "Some users may prefer a thicker consistency"],
+		"Review": "Lube Life's Personal Lubricant has received high marks for its versatile use. Its water-based formula makes it safe for all skin types and for use with condoms and toys. While it's non-staining and easy to clean, it might not offer the same prolonged moisture as silicone-based lubes."
+	}],
+	"Summary": "The varied range of sexual lubricants for women on Amazon promises to cater to all preferences, whether it's a water-based option for those with sensitive skin, a flavored fun play, or premium organic choices. Cost, compatibility, and specific sensations offered are factors to consider when making a choice.",
+	"Title": "Indulge in Sensual Comfort: Reviews of the Best Sexual Lubricants for Women",
+	"Description": "Selecting the best sexual lubricant can elevate your experience to new heights of pleasure and comfort. Dive into our comprehensive reviews to find the ideal lubricant tailored for women's needs.",
+	"Tags": ["sexual lubricants", "personal lube", "comfort", "intimacy", "sensitivity"],
+	"qa": [{
+		"q": "Can flavored lubricants be used for all sexual activities?",
+		"a": "Flavored lubricants are primarily designed for oral sex but check the product details as some may be versatile enough for other activities."
+	}, {
+		"q": "Are these lubricants safe for people with allergies or sensitivities?",
+		"a": "Many of these lubricants cater to sensitivities, though it's always advised to check the ingredient list and conduct a small patch test if you're prone to allergies."
+	}, {
+		"q": "Do water-based lubricants have a shorter duration than other types?",
+		"a": "Water-based lubricants may not last as long as silicone or oil-based ones and might require reapplication for sustained moisture during use."
+	}]
+};
+
+
+<AmzProductTable products={data} />

@@ -1,7 +1,7 @@
 export const config = {
     "site": {
-      "name": "",
-      "site": "",
+      "name": "demo",
+      "site": "https://demo.com",
       "base": "/",
       "trailingSlash": false,
       "googleSiteVerificationId": false,
