@@ -1,6 +1,5 @@
 export const config = {
     "site": {
-<<<<<<< HEAD
       "name": "demo",
       "site": "https://demo.com",
       "base": "/",
