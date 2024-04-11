@@ -2,9 +2,6 @@ export const config = {
     "site": {
 <<<<<<< HEAD
       "name": "demo",
-=======
-      "name": "",
->>>>>>> f88d2179a7894848421735453585c1dec04f5816
       "site": "https://demo.com",
       "base": "/",
       "trailingSlash": false,
