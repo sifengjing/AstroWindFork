@@ -1,0 +1,49 @@
+---
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import { config } from '../config';
+
+const metadata = {
+  title: 'About us',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+  <Hero>
+    <Fragment slot="title">
+      About Us
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <div class="relative px-4 md:px-6 py-12 md:py-16 lg:py-10 text-default max-w-7xl mx-auto prose-lg prose-headings:font-bold">
+      <p>Welcome to <strong>{config.site.name}</strong>, your trusted source for in-depth reviews, insightful recommendations, and exclusive deals on Amazon products. As proud participants in the Amazon Services LLC Associates Program, we are committed to providing our visitors with valuable content that enhances their shopping experience.</p>
+
+    <p>Our journey began with a simple vision: to create a platform that not only guides consumers through the vast world of online shopping but also helps them make informed decisions. We believe that a well-informed shopper is a happy shopper, and that's why we dedicate countless hours to researching, analyzing, and presenting the best products available on Amazon.</p>
+
+    <p>At <strong>{config.site.name}</strong>, we cover a wide range of categories to cater to all types of interests and needs — from the latest tech gadgets and home appliances to beauty must-haves and fitness gear. Our team of experts rigorously tests and reviews products to ensure you get honest and unbiased opinions.</p>
+
+    <p>But we're more than just product reviews. As an Amazon Affiliate, we provide direct links to Amazon products, making it easier for you to find and purchase items you love. By clicking on our links, you support our mission as we may earn a small commission at no extra cost to you. This helps us keep providing high-quality content and keeps our website running.</p>
+
+    <p>We value transparency and honesty above all, and we're constantly updating our content to ensure it reflects the latest market trends and customer feedback. Whether you're here to find the perfect gift, upgrade your home, or discover something new, we're here to help you every step of the way.</p>
+
+    <p>Thank you for choosing <strong>{config.site.name}</strong>. We're excited to be part of your online shopping journey and look forward to helping you find the best products on Amazon.</p>
+
+    <p>If you have any questions, suggestions, or just want to say hi, please don't hesitate to <a href=`${config.site.site}/contact` style="text-decoration: underline;">contact us</a>. We love hearing from our readers and are always here to assist.</p>
+  </div>
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="Statistics about us"
+    stats={[
+      { title: 'YouTube Subscribers', amount: '355K' },
+      { title: 'Email Subscribers', amount: '225K' },
+      { title: 'Annual Visitors', amount: '6.5M' },
+      { title: 'Customers Served', amount: '90K' },
+    ]}
+  />
+</Layout>

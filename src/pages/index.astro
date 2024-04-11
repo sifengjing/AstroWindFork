@@ -1,0 +1,37 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import { getBlogPermalink } from '~/utils/permalinks';
+
+export const prerender = true;
+
+const metadata = {
+  title: 'Love Bay — Explore Top Adult Products - Lubricants, Toys, Condoms',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero>
+    <Fragment slot="title">
+      <span class="text-accent dark:text-white highlight"> Enhance Your Intimacy</span><br> Discover Our Curated Collection of Sensual and Pleasure Products
+    </Fragment>
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+        Unlock the Secrets to Enhanced Intimacy: In-depth Reviews and Insights on the Finest Lubricants, Condoms, Adult Toys & Games, Bondage Gear & Accessories, and More. Elevate Your Sensual Journey with Our Curated Selections from Safer Sex Essentials to Sensual Delights and Exquisite Jewelry.</span
+      >
+    </Fragment>
+  </Hero>
+  
+
+<!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts
+    title="Expert Reviews on Intimate Essentials"
+  />
+
+</Layout>
