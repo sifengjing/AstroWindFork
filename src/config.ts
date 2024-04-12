@@ -6,6 +6,11 @@ export const config = {
       "trailingSlash": false,
       "googleSiteVerificationId": false,
       "aws_Tagid": "",
+      "home_Title": "Love Bay — Explore Top Adult Products - Lubricants, Toys, Condoms",
+      "hero_Title": '<span class="text-accent dark:text-white highlight"> Enhance Your Intimacy</span><br> Discover Our Curated Collection of Sensual and Pleasure Products',
+      "hero_Description": "Unlock the Secrets to Enhanced Intimacy: In-depth Reviews and Insights on the Finest Lubricants, Condoms, Adult Toys & Games, Bondage Gear & Accessories, and More. Elevate Your Sensual Journey with Our Curated Selections from Safer Sex Essentials to Sensual Delights and Exquisite Jewelry.",
+      "post_Title": "Expert Reviews on Intimate Essentials",
+      "logo_Image": "🔥",
     },
     "metadata": {
       "title": {
