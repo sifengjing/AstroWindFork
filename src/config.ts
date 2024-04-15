@@ -9,7 +9,8 @@ export const config = {
       "googleSiteVerificationId": false,
       "aws_Tagid": mainConfig.amz_Tagid,
       "home_Title": mainConfig.home_Headline,
-      "hero_Title": mainConfig.home_Slogan,
+      "hero_Title_1": mainConfig.home_Slogan1,
+      "hero_Title_2": mainConfig.home_Slogan2,
       "hero_Description": mainConfig.hero_Description,
       "post_Title": mainConfig.reviews_Slogan,
     },
@@ -34,7 +35,7 @@ export const config = {
         "site_name": mainConfig.name,
         "images": [
           {
-            "url": "~/assets/images/default.png",
+            "url": "/default.png",
             "width": 1200,
             "height": 628
           }

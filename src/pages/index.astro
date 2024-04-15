@@ -17,8 +17,13 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero>
-    <Fragment slot="title" set:html={config.site.hero_Title}>
-      
+    <Fragment slot="title" >
+      <span class="text-accent dark:text-white highlight">
+        {config.site.hero_Title_1}
+      </span>
+    </Fragment>
+    <Fragment slot="title">
+      {config.site.hero_Title_2}
     </Fragment>
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
