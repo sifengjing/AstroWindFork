@@ -1,29 +1,37 @@
+import { mainConfig } from './siteConfig';
+
 export const config = {
     "site": {
-      "name": "demo",
-      "site": "https://demo.com",
+      "name": mainConfig.name,
+      "site": mainConfig.site,
       "base": "/",
       "trailingSlash": false,
       "googleSiteVerificationId": false,
-      "aws_Tagid": "",
-      "home_Title": "Love Bay — Explore Top Adult Products - Lubricants, Toys, Condoms",
-      "hero_Title": '<span class="text-accent dark:text-white highlight"> Enhance Your Intimacy</span><br> Discover Our Curated Collection of Sensual and Pleasure Products',
-      "hero_Description": "Unlock the Secrets to Enhanced Intimacy: In-depth Reviews and Insights on the Finest Lubricants, Condoms, Adult Toys & Games, Bondage Gear & Accessories, and More. Elevate Your Sensual Journey with Our Curated Selections from Safer Sex Essentials to Sensual Delights and Exquisite Jewelry.",
-      "post_Title": "Expert Reviews on Intimate Essentials",
-      "logo_Image": "🔥",
+      "aws_Tagid": mainConfig.amz_Tagid,
+      "home_Title": mainConfig.home_Headline,
+      "hero_Title": mainConfig.home_Slogan,
+      "hero_Description": mainConfig.hero_Description,
+      "post_Title": mainConfig.reviews_Slogan,
     },
     "metadata": {
       "title": {
-        "default": "",
-        "template": "%s — "
+        "default": mainConfig.title,
+        "template": "%s — "+ mainConfig.name
       },
-      "description": "",
+      "description": mainConfig.description,
       "robots": {
         "index": true,
         "follow": true
       },
+      "analytics": {
+        "vendors": {
+          "googleAnalytics": {
+            "id": mainConfig.googleAnalytics,
+          }
+        }
+      },
       "openGraph": {
-        "site_name": "",
+        "site_name": mainConfig.name,
         "images": [
           {
             "url": "~/assets/images/default.png",
@@ -69,13 +77,6 @@ export const config = {
           "robots": {
             "index": false
           }
-        }
-      }
-    },
-    "analytics": {
-      "vendors": {
-        "googleAnalytics": {
-          "id": "",
         }
       }
     },
@@ -125,4 +126,3 @@ export const config = {
       }
     }
   }
-    
