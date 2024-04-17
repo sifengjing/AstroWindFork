@@ -78,7 +78,7 @@ export const config = {
           "robots": {
             "index": false
           }
-        }
+        },
         "isRelatedPostsEnabled":true,
         "relatedPostsCount" : 4
       }
