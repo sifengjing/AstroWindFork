@@ -79,6 +79,8 @@ export const config = {
             "index": false
           }
         }
+        "isRelatedPostsEnabled":true,
+        "relatedPostsCount" : 4
       }
     },
     "ui": {
