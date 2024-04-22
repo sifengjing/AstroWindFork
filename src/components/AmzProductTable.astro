@@ -34,7 +34,7 @@ const amzUrl = 'https://www.amazon.com/dp';
                     <div class="flex flex-col w-2/3 md:flex-row md:order-1 grow order-0r">
                         <div class="md:ml-4 md:grow">
 							<div class="text-xs mb-2 font-medium">{product.Slogan}</div>
-							<a class="hover:underline text-xs font-bold" href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} target="_blank" rel="nofollow noreferrer sponsored">
+							<a class="hover:underline text-xs font-bold block leading-snug" href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} target="_blank" rel="nofollow noreferrer sponsored">
                             {product.Name}
 							</a>
 						</div>
@@ -80,17 +80,23 @@ const amzUrl = 'https://www.amazon.com/dp';
             <div class="flex flex-col md:flex-row justify-between space-y-2 md:space-y-0">
                 <div class="md:w-1/2 mx-2">
                     <h4 class="bg-green-700 text-white p-1 rounded !mt-2">PROS</h4>
-                    <ul>
+                    <ul class="list-none">
                         {product.Pros.map(pros => (
-                            <li  class="text-sm" key={pros}>{pros}</li>
+                            <li  class="text-sm flex items-center" key={pros}>
+                                <svg viewBox="0 0 24 24" width="30" height="35" style="flex-shrink: 0;" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM18.4158 9.70405C18.8055 9.31268 18.8041 8.67952 18.4127 8.28984L17.7041 7.58426C17.3127 7.19458 16.6796 7.19594 16.2899 7.58731L10.5183 13.3838L7.19723 10.1089C6.80398 9.72117 6.17083 9.7256 5.78305 10.1189L5.08092 10.8309C4.69314 11.2241 4.69758 11.8573 5.09083 12.2451L9.82912 16.9174C10.221 17.3039 10.8515 17.301 11.2399 16.911L18.4158 9.70405Z" fill="#15803d"></path> </g></svg>
+                                <span class="ml-2">{pros}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
                 <div class="md:w-1/2 mx-2">
                     <h4 class="bg-red-800 text-white p-1 rounded !mt-2">CONS</h4>
-                    <ul>
+                    <ul class="list-none">
                         {product.Cons.map(con => (
-                            <li class="text-sm" key={con}>{con}</li>
+                            <li class="text-sm flex items-center " key={con}>
+                                <svg fill="#991b1b" width="30" height="30" style="flex-shrink: 0;" version="1.1" id="Filled_Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Status-Error-Filled"> <path d="M12,0C5.37,0,0,5.37,0,12s5.37,12,12,12s12-5.37,12-12S18.63,0,12,0z M18.38,16.62l-1.77,1.77L12,13.77l-4.62,4.62 l-1.77-1.77L10.23,12L5.62,7.38l1.77-1.77L12,10.23l4.62-4.62l1.77,1.77L13.77,12L18.38,16.62z"></path> </g> </g></svg>
+                                <span class="ml-2">{con}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
