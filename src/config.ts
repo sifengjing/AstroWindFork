@@ -5,7 +5,7 @@ export const config = {
       "name": mainConfig.name,
       "site": mainConfig.site,
       "base": "/",
-      "trailingSlash": false,
+      "trailingSlash": true,
       "googleSiteVerificationId": false,
       "aws_Tagid": mainConfig.amz_Tagid,
       "home_Title": mainConfig.home_Headline,
