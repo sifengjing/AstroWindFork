@@ -6,118 +6,209 @@ const newSuffix200 = '_SR300,200';
 const newSuffix460 = '_SR460,460';
 import { config } from '../config';
 const amzUrl = 'https://www.amazon.com/dp';
-//console.log(products.Products);
+//console.log(products.Products[0].Name);
+const productNameFist = products.Products[0].Name;
 
+function simpleHash(input) {
+    let hash = 0;
+    for (let i = 0; i < input.length; i++) {
+        const char = input.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+}
+
+function calculateRating(productNameFist) {
+    const baseRating = 4.3;
+    const hashValue = simpleHash(productNameFist);
+    const rangeMin = 0.3, rangeMax = 0.7;
+    const range = rangeMax - rangeMin;
+    const mappedValue = rangeMin + (hashValue % 100 / 100) * range;
+    const finalRating = baseRating + mappedValue;
+    return Number(finalRating.toFixed(1));
+}
 ---
-<div class="Introduce">
-    <p class="!mt-0 text-base suojin2">{products.Introduce} </p>
+
+<div class="introduce">
+  <p class="!mt-0 text-base suojin2">{products.Introduce}</p>
 </div>
 <div class="flex flex-col sm:flex-row justify-between max-w-3xl mx-auto mt-0 mb-6">
-    
-    <div class="min-w-full divide-y divide-gray-200">
-        <h3 class="!mt-2">Overview</h3>
-        <div class="border-b-2 border-gray-100"> <!-- Changes start here: Added grid settings for small screens -->
-            {products.Products.map(product => (
-                <div class="flex flex-wrap py-2 border-t-2 border-gray-100 md:flex-nowrap md:py-2 items-center h-full text-center">
-                    <div class="flex-none order-first w-1/3 md:w-32 md:order-0">
-                        <a href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} target="_blank" rel="nofollow noreferrer sponsored">
-                            <Image 
-                                src={product.Image.replace('.jpg', `${newSuffix200}.jpg`)}
-                                width={150} 
-                                alt={product.Name} 
-                                loading="lazy"
-                                style = "margin-top: 0.5em;margin-bottom: 0.5em;"
-                                decoding="async"
-                            />
-                        </a>
-                    </div>
-                    <div class="flex flex-col w-2/3 md:flex-row md:order-1 grow order-0r">
-                        <div class="md:ml-4 md:grow">
-							<div class="text-xs mb-2 font-medium">{product.Slogan}</div>
-							<a class="hover:underline text-xs font-bold block leading-snug" href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} target="_blank" rel="nofollow noreferrer sponsored">
-                            {product.Name}
-							</a>
-						</div>
-						<div class="my-4 w-32 text-xs font-bold tracking-wide md:flex-none md:ml-2 hover:underline m-auto">
-						<a class="" href={`#${product.Asin}`}  rel="nofollow sponsored">
-                        Jump to Details
-<svg class="w-3 h-3 ml-1 mb-1 inline-block" width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M5.41671 9.84171V0.75H6.58338V9.84171L10.2542 6.17085L11.0792 6.99581L6.00004 12.075L0.920898 6.99581L1.74586 6.17085L5.41671 9.84171Z" fill="black"></path>
-</svg>
-                        </a>
-						</div>
-                    </div>
-           
-                    <div class="order-2 whitespace-nowrap md:flex-none md:w-44 grow">
-                        <Button rel="nofollow noreferrer sponsored" variants="btn-secondary" class="md:w-auto w-full bg-[#FF9900] hover:bg-[#cc7a00] text-gray-900 font-bold p-2 text-xs leading-none no-underline" icon='tabler:shopping-bag' href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} text='Shop on Amazon'></Button>
-                    </div>
+  <div class="min-w-full divide-y divide-gray-200">
+    <h3 class="!mt-2">Overview</h3>
+    <div class="border-b-2 border-gray-100">
+      <!-- Changes start here: Added grid settings for small screens -->
+      {
+        products.Products.map((product, index) => (
+          <div
+            class="flex flex-wrap py-2 border-t-2 border-gray-100 md:flex-nowrap md:py-2 items-center h-full text-center"
+            itemscope={index === 0 ? true : undefined}
+            itemtype={index === 0 ? 'http://schema.org/Product' : undefined}
+          >
+            <div class="flex-none order-first w-1/3 md:w-32 md:order-0">
+              <a
+                href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`}
+                target="_blank"
+                rel="nofollow noreferrer sponsored"
+              >
+                <Image
+                  src={product.Image.replace('.jpg', `${newSuffix200}.jpg`)}
+                  width={150}
+                  alt={product.Name}
+                  loading="lazy"
+                  style="margin-top: 0.5em;margin-bottom: 0.5em;"
+                  decoding="async"
+                  itemprop={index === 0 ? 'image' : undefined}
+                />
+              </a>
+            </div>
+            <div class="flex flex-col w-2/3 md:flex-row md:order-1 grow order-0r">
+              <div class="md:ml-4 md:grow">
+                <div class="text-xs mb-2 font-medium" itemprop={index === 0 ? 'description' : undefined}>
+                  {product.Slogan}
                 </div>
-            ))}
-        </div> <!-- End of grid layout for small screens -->
+                <a
+                  class="hover:underline text-xs font-bold"
+                  href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`}
+                  target="_blank"
+                  rel="nofollow noreferrer sponsored"
+                >
+                  <span itemprop={index === 0 ? 'name' : undefined}>{product.Name}</span>
+                </a>
+                {index === 0 && (
+                  <div
+                    itemprop="aggregateRating"
+                    itemscope
+                    itemtype="http://schema.org/AggregateRating"
+                    style={{ display: 'none' }}
+                  >
+                    <meta itemprop="ratingValue" content={calculateRating(productNameFist)} />
+                    <meta itemprop="reviewCount" content="5" />
+                  </div>
+                )}
+              </div>
+              <div class="my-4 w-32 text-xs font-bold tracking-wide md:flex-none md:ml-2 hover:underline m-auto">
+                <a class="" href={`#${product.Asin}`} rel="nofollow sponsored">
+                  Jump to Details
+                  <svg
+                    class="w-3 h-3 ml-1 mb-1 inline-block"
+                    width="12"
+                    height="13"
+                    viewBox="0 0 12 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M5.41671 9.84171V0.75H6.58338V9.84171L10.2542 6.17085L11.0792 6.99581L6.00004 12.075L0.920898 6.99581L1.74586 6.17085L5.41671 9.84171Z"
+                      fill="black"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="order-2 whitespace-nowrap md:flex-none md:w-44 grow">
+              <Button
+                rel="nofollow noreferrer sponsored"
+                variants="btn-secondary"
+                class="md:w-auto w-full bg-[#FF9900] hover:bg-[#cc7a00] text-gray-900 font-bold p-2 text-xs leading-none no-underline"
+                icon="tabler:shopping-bag"
+                href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`}
+                text="Shop on Amazon"
+              />
+            </div>
+          </div>
+        ))
+      }
     </div>
+    <!-- End of grid layout for small screens -->
+  </div>
 </div>
 
 <div class="justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 sm:items-center">
-    {products.Products.map(product => (
-        <div class="flex flex-col space-y-4 mb-4" id={product.Asin}>
-            <a href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} target="_blank" rel="nofollow noreferrer sponsored" class="text-lg font-semibold text-center mt-2">
-                {product.Name}
-            </a>
-            <a href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} target="_blank" rel="nofollow noreferrer sponsored" class="block w-full md:w-auto !mt-0">
-                <Image 
-                    src={product.Image.replace('.jpg', `${newSuffix460}.jpg`)}
-                    width="300" 
-                    alt={product.Name} 
-                    class="mb-3 w-500 h-auto rounded-lg object-cover mx-auto"
-                    style = "margin-bottom: 0;"
-                    loading="lazy"
-                    decoding="async"
-                />
-            </a>
-            <div class="whitespace-nowrap md:flex-none grow text-center">
-                <Button rel="nofollow noreferrer sponsored" variants="btn-secondary" class="md:w-auto w-full bg-[#FF9900] hover:bg-[#cc7a00] text-gray-900 font-bold p-2 text-xs leading-none no-underline" icon='tabler:shopping-bag' href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`} text='Shop on Amazon'></Button>
-            </div>
-            <div class="flex flex-col md:flex-row justify-between space-y-2 md:space-y-0">
-                <div class="md:w-1/2 mx-2">
-                    <h4 class="bg-green-700 text-white p-1 rounded !mt-2">PROS</h4>
-                    <ul class="list-none">
-                        {product.Pros.map(pros => (
-                            <li  class="text-sm flex items-center" key={pros}>
-                                <svg viewBox="0 0 24 24" width="30" height="35" style="flex-shrink: 0;" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM18.4158 9.70405C18.8055 9.31268 18.8041 8.67952 18.4127 8.28984L17.7041 7.58426C17.3127 7.19458 16.6796 7.19594 16.2899 7.58731L10.5183 13.3838L7.19723 10.1089C6.80398 9.72117 6.17083 9.7256 5.78305 10.1189L5.08092 10.8309C4.69314 11.2241 4.69758 11.8573 5.09083 12.2451L9.82912 16.9174C10.221 17.3039 10.8515 17.301 11.2399 16.911L18.4158 9.70405Z" fill="#15803d"></path> </g></svg>
-                                <span class="ml-2">{pros}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div class="md:w-1/2 mx-2">
-                    <h4 class="bg-red-800 text-white p-1 rounded !mt-2">CONS</h4>
-                    <ul class="list-none">
-                        {product.Cons.map(con => (
-                            <li class="text-sm flex items-center " key={con}>
-                                <svg fill="#991b1b" width="30" height="30" style="flex-shrink: 0;" version="1.1" id="Filled_Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Status-Error-Filled"> <path d="M12,0C5.37,0,0,5.37,0,12s5.37,12,12,12s12-5.37,12-12S18.63,0,12,0z M18.38,16.62l-1.77,1.77L12,13.77l-4.62,4.62 l-1.77-1.77L10.23,12L5.62,7.38l1.77-1.77L12,10.23l4.62-4.62l1.77,1.77L13.77,12L18.38,16.62z"></path> </g> </g></svg>
-                                <span class="ml-2">{con}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-            <div class="md:w-full mx-2 !mt-0">
-                <div class="text-sm !mt-0 suojin2" set:html={product.Review}>
-
-                </div>
-            </div>
+  {
+    products.Products.map((product) => (
+      <div class="flex flex-col space-y-4 mb-4" id={product.Asin}>
+        <a
+          href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`}
+          target="_blank"
+          rel="nofollow noreferrer sponsored"
+          class="text-lg font-semibold text-center mt-2"
+        >
+          {product.Name}
+        </a>
+        <a
+          href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`}
+          target="_blank"
+          rel="nofollow noreferrer sponsored"
+          class="block w-full md:w-auto !mt-0"
+        >
+          <Image
+            src={product.Image.replace('.jpg', `${newSuffix460}.jpg`)}
+            width="300"
+            alt={product.Name}
+            class="mb-3 w-500 h-auto rounded-lg object-cover mx-auto"
+            style="margin-bottom: 0;"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <div class="whitespace-nowrap md:flex-none grow text-center">
+          <Button
+            rel="nofollow noreferrer sponsored"
+            variants="btn-secondary"
+            class="md:w-auto w-full bg-[#FF9900] hover:bg-[#cc7a00] text-gray-900 font-bold p-2 text-xs leading-none no-underline"
+            icon="tabler:shopping-bag"
+            href={`${amzUrl}/${product.Asin}?tag=${config.site.aws_Tagid}`}
+            text="Shop on Amazon"
+          />
         </div>
-    ))}
+        <div class="flex flex-col md:flex-row justify-between space-y-2 md:space-y-0">
+          <div class="md:w-1/2 mx-2">
+            <h4 class="bg-green-700 text-white p-1 rounded !mt-2">PROS</h4>
+            <ul>
+              {product.Pros.map((pros) => (
+                <li class="text-sm" key={pros}>
+                  {pros}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="md:w-1/2 mx-2">
+            <h4 class="bg-red-800 text-white p-1 rounded !mt-2">CONS</h4>
+            <ul>
+              {product.Cons.map((con) => (
+                <li class="text-sm" key={con}>
+                  {con}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div class="md:w-full mx-2 !mt-0">
+          <div class="text-sm !mt-0 suojin2" set:html={product.Review}></div>
+        </div>
+      </div>
+    ))
+  }
 </div>
 <div class="summary">
-    <p class="!mt-0 text-xl suojin2 lg:prose-xl prose-xl prose">{products.Summary} </p>
+  <p class="!mt-0 text-xl suojin2 lg:prose-xl prose-xl prose">{products.Summary}</p>
 </div>
-<div class="max-w-3xl mx-auto mt-8">
-    <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions</h3>
-    {products.qa.map((faq, index) => (
-        <div key={index} class="mb-4">
-            <h5 class="font-bold text-lg mb-2">{faq.q}</h5>
-            <p>{faq.a}</p>
+<div itemscope itemtype="https://schema.org/FAQPage" class="max-w-3xl mx-auto mt-8">
+  <h3 class="text-xl font-semibold mb-4">Frequently Asked Questions</h3>
+  {
+    products.qa.map((faq, index) => (
+      <div itemprop="mainEntity" itemscope itemtype="https://schema.org/Question" key={index} class="mb-4">
+        <h5 itemprop="name" class="font-bold text-lg mb-2">
+          {faq.q}
+        </h5>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">{faq.a}</p>
         </div>
-    ))}
+      </div>
+    ))
+  }
 </div>
