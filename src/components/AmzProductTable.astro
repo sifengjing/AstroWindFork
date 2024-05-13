@@ -28,6 +28,14 @@ function calculateRating(productNameFist) {
     const finalRating = baseRating + mappedValue;
     return Number(finalRating.toFixed(1));
 }
+
+function calculateReviewCount(productNameFist) {
+    const hashValue = simpleHash(productNameFist);
+    const minReviewCount = 5, maxReviewCount = 100;
+    const range = maxReviewCount - minReviewCount;
+    const reviewCount = minReviewCount + (hashValue % range);
+    return reviewCount;
+}
 ---
 
 <div class="introduce">
@@ -83,7 +91,7 @@ function calculateRating(productNameFist) {
                     style={{ display: 'none' }}
                   >
                     <meta itemprop="ratingValue" content={calculateRating(productNameFist)} />
-                    <meta itemprop="reviewCount" content="5" />
+                    <meta itemprop="reviewCount" content={calculateReviewCount(productNameFist)} />
                   </div>
                 )}
               </div>
